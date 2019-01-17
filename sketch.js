@@ -1,5 +1,8 @@
 let rot = 0
 
+// let drone1 = new Drone (401,401, 100, 1);
+let drones = new droneSpawn(5)
+
 function preload() {
 
 }
@@ -12,10 +15,11 @@ function setup () {
 }
 
 function spin(){
-    if (keyIsPressed && key == 'a'){// || keyIsPressed && key == 'LEFT_ARROW'){
+if (keyIsPressed){
+    if (key == 'a'){// || keyIsPressed && key == 'LEFT_ARROW'){
         rot -= .1;
         // console.log("poop")
-    } else if (keyIsPressed && key == 'd'){// || keyIsPressed && key == 'RIGHT_ARROW'){
+    } else if (key == 'd'){// || keyIsPressed && key == 'RIGHT_ARROW'){
         rot += .1;
         // console.log("pee")
     // } else {
@@ -24,10 +28,11 @@ function spin(){
     // }
 }
 }
+}
 
 
   function draw(){
-spin()
+ spin()
    // background(0)
    push();
     translate(width / 2, height / 2);
@@ -38,7 +43,16 @@ spin()
    // translate(400,400)
    // rotate(5)
    scale(.2)
-
+   fill(0)
+   // // if ((drone1.x < 800 && drone.x > 0) && (drone1.y < 800 && drone.y > 0)){
+   //     drone1.show()
+   //     drone1.scaleUp()
+   // }
+   drones.spawn()
+   drones.droneShow()
+   ellipse(0,0, 50)
+   // drones.destr()
+   // drone1.scaleUp()
    // image(img,0,0)
    pop();
      // rect(mouseX,mouseY,300+(mouseY/150),25+(mouseY)/12)
