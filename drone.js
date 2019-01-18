@@ -1,25 +1,41 @@
 class Drone {
-    constructor(size, scale, number, playerX, playerY){
+    constructor(size, scale, number, playerX, playerY, toPlayer){
         this.random_x = Math.random() >= 0.5;
         this.random_y = Math.random() >= 0.5;
         this.x = random(-50,50);
         this.y = random(-50,50);
-        if (this.random_x && this.random_y){
-            this.randX = random(-1.5,-1.4)
-            this.randY = random(-1.5,-1.4)
-        } else if (this.random_x && this.random_y == false){
-            this.randX = random(1.4,1.5)
-            this.randY = random(-1.5,1.5)
-        } else if (this.random_x == false && this.random_y){
-            this.randX = random(-1.5,1.5)
-            this.randY = random(1.4,1.5)
-        } else if (this.random_x == false && this.random_y == false){
-            this.randX = random(1.4,1.5)
-            this.randY = random(1.4,1.5)
+        this.go = Math.floor(random(0,8))
+        console.log(Math.floor(random(0,8)))
+        if (this.toPlayer == true){
+            this.randX = playerX
+            this.randY = playerY
         } else {
-            this.randX = random(1.4,1.5)
-            this.randY = random(-1.4,-1.5)
+        if (this.go == 0){
+            this.randX = random(-1.5,-1.4)//negative--shoot
+            this.randY = random(-1.5,-1.4)//negative--shoot
+        } else if (this.go == 1){
+            this.randX = random(-1.4,-1.5)//negative--shoot
+            this.randY = random(-1.5,1.5)//var
+        } else if (this.go == 2){
+            this.randX = random(-1.5,1.5)//var
+            this.randY = random(-1.4,-1.5)//negative--shoot
+        } else if (this.go == 3){
+            this.randX = random(1.4,1.5)//positive--shoot
+            this.randY = random(1.4,1.5)//positive--shoot
+        } else if (this.go == 4) {
+            this.randX = random(1.4,1.5)//positive--shoot
+            this.randY = random(-1.4,-1.5)//negative--shoot
+        } else if (this.go == 5){
+            this.randX = random(-1.4,-1.5)//negative--shoot
+            this.randY = random(1.4,1.5)//positive--shoot
+        } else if (this.go == 6){
+            this.randX = random(-1.5,1.5)//var
+            this.randY = random(1.4,1.5)//positive--shoot
+        } else if (this.go == 7){
+            this.randX = random(1.4,1.5)//positive--shoot
+            this.randY = random(-1.5,1.5)//var
         }
+    }
         // if (this.random_y){
         //     this.randY = random(-1.5,-1.4)
         // } else {
@@ -37,12 +53,14 @@ class Drone {
         this.shooter = false;
         this.hit = false;
         this.speed = lerp(7, 11, .5)
+        this.toPlayer = toPlayer;
     }
 
 
     scaleUp(){
-        // if (this.scale < 900){
+        if (this.scale < 900){
             this.scale += pow(1.1,24);
+        }
         //     this.x += pow(this.vector[0], 7);
         //     this.y += pow(this.vector[1], 7);
         // } else {
@@ -63,7 +81,7 @@ class Drone {
     }
 
     show(){
-        if (this.x > 3000 || this.x < -3000){
+        if (this.x > 3000 || this.x < -3000 || this.y > 3000 || this.y < -3000){
             this.destroy = true
         } else {
             push()

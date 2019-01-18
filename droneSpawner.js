@@ -11,8 +11,15 @@ class droneSpawn {
 
     spawn(){
         if (this.droneArray.length < this.num){
-            this.droneArray[this.count] = new Drone (100, 1, this.count, this.playerX, this.playerY)
+            this.droneArray[this.count] = new Drone (100, 1, this.count, this.playerX, this.playerY, false)
             this.count+=1;
+        }
+
+    }
+
+    spawnTowardPlayer(){
+        if (this.droneArray.length < this.num){
+            let towardPlayer = new Drone (100, 1, this.count, this.playerX, this.playerY, true)
         }
 
     }
