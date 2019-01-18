@@ -39,11 +39,9 @@ if (keyIsPressed){
 }
 }
 //
-// let interv = setInterval(drones.spawnTowardPlayer, 2000);
+let interv;
 
   function draw(){
-
-
  spin()
    // background(0)
    push();
