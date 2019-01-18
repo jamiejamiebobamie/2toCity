@@ -1,7 +1,8 @@
 let rot = 0
 
 // let drone1 = new Drone (401,401, 100, 1);
-let drones = new droneSpawn(5)
+let drones = new droneSpawn(5, 400, 700);
+let player1 = new Player(400, 700);
 
 function preload() {
 
@@ -50,11 +51,11 @@ if (keyIsPressed){
    // }
    drones.spawn()
    drones.droneShow()
-   ellipse(0,0, 50)
-   // drones.destr()
+   drones.destr()
    // drone1.scaleUp()
    // image(img,0,0)
    pop();
+   player1.show();
      // rect(mouseX,mouseY,300+(mouseY/150),25+(mouseY)/12)
 }
 
