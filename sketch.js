@@ -1,6 +1,7 @@
 let rot = 0
 let playerPos = [0,0]
 let GlobeScore = 100;
+let signPos = false;
 
 // let drone1 = new Drone (401,401, 100, 1);
 let drones = new droneSpawn(10, playerPos[0], playerPos[1]);
@@ -21,15 +22,20 @@ function spin(){
 if (keyIsPressed){
     if (key == 'a'){// || keyIsPressed && key == 'LEFT_ARROW'){
         rot -= .05;
+        signPos = false;
         // console.log(rot)
     } else if (key == 'd'){// || keyIsPressed && key == 'RIGHT_ARROW'){
         rot += .05;
+        signPos = true;
         // console.log(rot)
-    // } else {
-    //     rot = 0;
-    //     // console.log("eeh")
-    // }
-}
+    } else {
+        if (signPos == true){
+            rot += .05;
+        } else {
+            rot -= .05;
+        }
+
+    }
 }
 }
 
