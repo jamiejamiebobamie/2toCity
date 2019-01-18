@@ -1,7 +1,9 @@
 let rot = 0
+let playerPos = [0,0]
+let GlobeScore = 100;
 
 // let drone1 = new Drone (401,401, 100, 1);
-let drones = new droneSpawn(5, 400, 700);
+let drones = new droneSpawn(10, playerPos[0], playerPos[1]);
 let player1 = new Player(400, 700);
 
 function preload() {
@@ -18,11 +20,11 @@ function setup () {
 function spin(){
 if (keyIsPressed){
     if (key == 'a'){// || keyIsPressed && key == 'LEFT_ARROW'){
-        rot -= .1;
-        // console.log("poop")
+        rot -= .05;
+        // console.log(rot)
     } else if (key == 'd'){// || keyIsPressed && key == 'RIGHT_ARROW'){
-        rot += .1;
-        // console.log("pee")
+        rot += .05;
+        // console.log(rot)
     // } else {
     //     rot = 0;
     //     // console.log("eeh")
@@ -33,6 +35,8 @@ if (keyIsPressed){
 
 
   function draw(){
+
+
  spin()
    // background(0)
    push();
@@ -50,13 +54,26 @@ if (keyIsPressed){
    //     drone1.scaleUp()
    // }
    drones.spawn()
-   drones.droneShow()
+   drones.droneShow(1700*sin(rot),1700*cos(rot))
    drones.destr()
    // drone1.scaleUp()
    // image(img,0,0)
+   // fill('yellow')
+   // // rect(0, 1700, 50,50)
+   // // rect(0, -1700, 50,50)
+   // // rect(-1700, 0, 50,50)
+   // // rect(1700, 0, 50,50)
+   // fill('red')
+   playerPos = [1700*sin(rot),1700*cos(rot)]
+   // // console.log([1700*sin(rot),1700*cos(rot)])
+   rect(1700*sin(rot), 1700*cos(rot), 100,100)
    pop();
    player1.show();
-     // rect(mouseX,mouseY,300+(mouseY/150),25+(mouseY)/12)
+   if (player1.score != GlobeScore){
+       player1.score = GlobeScore
+   }
+   text(player1.score,100,100)
+
 }
 
   draw()

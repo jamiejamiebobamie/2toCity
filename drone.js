@@ -24,15 +24,21 @@ class Drone {
         this.playerX = playerX;
         this.playerY = playerY;
         this.shooter = false;
+        this.hit = false;
     }
 
     scaleUp(){
         if (this.scale < 1000){
-            this.scale += pow(2,3);
+            this.scale += pow(1.1,24);
+            this.x += pow(this.vector[0], 9);
+            this.y += pow(this.vector[1], 9);
+        } else {
             this.shooter = true
+            this.x += pow(this.vector[0], 11);
+            this.y += pow(this.vector[1], 11);
         }
-        this.x += pow(this.vector[0], 7);
-        this.y += pow(this.vector[1], 7);
+        // this.x += pow(this.vector[0], 7);
+        // this.y += pow(this.vector[1], 7);
     }
 
     shoot(){
@@ -46,6 +52,18 @@ class Drone {
             this.destroy = true
         } else {
             push()
+
+            if (dist(this.x, this.y, this.playerX, this.playerY) < 400){
+                fill('red')
+                if (this.hit == false){
+                    GlobeScore -= 5;
+                    this.hit = true;
+                }
+            }else{
+                this.hit = false;
+                fill("black")
+            }
+            // console.log(this.size+this.scale)
             ellipse(this.x, this.y, this.size+this.scale)
             pop()
         }

@@ -29,8 +29,10 @@ class droneSpawn {
         }
     }
 
-    droneShow(){
+    droneShow(playerX, playerY){
         for (let drone of this.droneArray){
+            drone.playerX = playerX
+            drone.playerY = playerY
             drone.show()
             drone.scaleUp()
             drone.shoot()
