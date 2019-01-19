@@ -4,7 +4,7 @@ let GlobeScore = 100;
 let signPos = false;
 
 // let drone1 = new Drone (401,401, 100, 1);
-let drones = new droneSpawn(10, playerPos[0], playerPos[1]);
+let drones = new droneSpawn(20, playerPos[0], playerPos[1]);
 let player1 = new Player(400, 700);
 
 function preload() {
@@ -70,7 +70,7 @@ let interv;
    // // rect(1700, 0, 50,50)
    // fill('red')
    playerPos = [1700*sin(rot),1700*cos(rot)]
-   // // console.log([1700*sin(rot),1700*cos(rot)])
+   // console.log([1700*sin(rot),1700*cos(rot)])
    rect(1700*sin(rot), 1700*cos(rot), 100,100)
    pop();
    player1.show();
@@ -78,7 +78,7 @@ let interv;
        player1.score = GlobeScore
    }
    text(player1.score,100,100)
-console.log(sin(rot))
+// console.log(sin(rot))
 }
 
   draw()

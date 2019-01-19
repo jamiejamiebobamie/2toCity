@@ -1,16 +1,17 @@
 class Drone {
-    constructor(size, scale, number, playerX, playerY, toPlayer){
+    constructor(size, scale, number, playerX, playerY, toPlayer, first){
         this.CorR = Math.random() >= 0.5;
         this.random_x = Math.random() >= 0.5;
         this.random_y = Math.random() >= 0.5;
-        this.x = random(-50,50);
-        this.y = random(-50,50);
+        this.x = 0//random(-50,50);
+        this.y = 0//random(-50,50);
         this.go = Math.floor(random(0,8))
-        // console.log(Math.floor(random(0,8)))
-        // if (this.toPlayer == true){
-        //     this.randX = playerX
-        //     this.randY = playerY
-        // } else {
+        this.first = first;
+        this.toPlayer = toPlayer;
+        if (this.toPlayer == true && this.first == false){
+            this.randX = (playerX)/1150
+            this.randY = (playerY)/1150
+        } else {
         if (this.go == 0){
             this.randX = random(-1.5,-1.4)//negative--shoot
             this.randY = random(-1.5,-1.4)//negative--shoot
@@ -36,6 +37,7 @@ class Drone {
             this.randX = random(1.4,1.5)//positive--shoot
             this.randY = random(-1.5,1.5)//var
         }
+    }
 
         // if (this.random_y){
         //     this.randY = random(-1.5,-1.4)
@@ -43,7 +45,7 @@ class Drone {
         //     this.randY = random(1.4,1.5)
         // }
         this.scale = scale;
-        this.vector = [this.randX,this.randY];
+        this.vector = [this.randX, this.randY];
         this.size = size;
         this.destroy = false;
         this.number = number;
@@ -55,12 +57,14 @@ class Drone {
         this.hit = false;
         this.speed = lerp(3, 11, .75)
         this.toPlayer = toPlayer;
-    }
+        console.log(this.randX, this.randY, this.playerX, this.playerY)
+        // console.log(this.first, this.toPlayer)
+}
 
 
     scaleUp(){
-        if (this.scale < 900){
-            this.scale += pow(1.1,24);
+        if (this.scale < 1300){
+            this.scale += pow(1.1,12);
         }
         //     this.x += pow(this.vector[0], 7);
         //     this.y += pow(this.vector[1], 7);
@@ -86,24 +90,30 @@ class Drone {
             this.destroy = true
         } else {
             push()
-
             if (dist(this.x, this.y, this.playerX, this.playerY) < this.scale){
-                fill('red')
-                if (this.hit == false){
-                    GlobeScore -= 5;
+                if (this.hit == false) {
+                    fill('red')
+                    GlobeScore -= 1;
+                    this.destroy = true
                     this.hit = true;
+                    }
+                } else {
+                    this.hit = false;
+                    fill("black")
                 }
-            }else{
-                this.hit = false;
-                fill("black")
-            }
-            // console.log(this.size+this.scale)
-            if (this.CorR){
-                fill('green')
-                ellipse(this.x, this.y, this.size+this.scale)
+        // if (this.CorR){
+        //     fill('green')
+        //     ellipse(this.x, this.y, this.size+this.scale)
+        // } else {
+            // fill('black')
+            if (this.toPlayer == true && this.first == false){
+                ellipse(lerp(this.x, this.playerX, .4), lerp(this.y, this.playerY, .4), this.size+this.scale)
             } else {
-                rect(this.x, this.y, this.x,this.y)
+                ellipse(this.x, this.y, this.size+this.scale)
             }
+        // }
+            // console.log(this.size+this.scale)
+
 
             pop()
         }
