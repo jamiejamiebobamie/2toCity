@@ -78,7 +78,7 @@ let interv;
        player1.score = GlobeScore
    }
    text(player1.score,100,100)
-
+console.log(sin(rot))
 }
 
   draw()

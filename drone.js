@@ -1,41 +1,42 @@
 class Drone {
     constructor(size, scale, number, playerX, playerY, toPlayer){
+        this.CorR = Math.random() >= 0.5;
         this.random_x = Math.random() >= 0.5;
         this.random_y = Math.random() >= 0.5;
         this.x = random(-50,50);
         this.y = random(-50,50);
         this.go = Math.floor(random(0,8))
-        console.log(Math.floor(random(0,8)))
-        if (this.toPlayer == true){
-            this.randX = playerX
-            this.randY = playerY
+        // console.log(Math.floor(random(0,8)))
+        // if (this.toPlayer == true){
+        //     this.randX = playerX
+        //     this.randY = playerY
         // } else {
-        // if (this.go == 0){
-        //     this.randX = random(-1.5,-1.4)//negative--shoot
-        //     this.randY = random(-1.5,-1.4)//negative--shoot
-        // } else if (this.go == 1){
-        //     this.randX = random(-1.4,-1.5)//negative--shoot
-        //     this.randY = random(-1.5,1.5)//var
-        // } else if (this.go == 2){
-        //     this.randX = random(-1.5,1.5)//var
-        //     this.randY = random(-1.4,-1.5)//negative--shoot
-        // } else if (this.go == 3){
-        //     this.randX = random(1.4,1.5)//positive--shoot
-        //     this.randY = random(1.4,1.5)//positive--shoot
-        // } else if (this.go == 4) {
-        //     this.randX = random(1.4,1.5)//positive--shoot
-        //     this.randY = random(-1.4,-1.5)//negative--shoot
-        // } else if (this.go == 5){
-        //     this.randX = random(-1.4,-1.5)//negative--shoot
-        //     this.randY = random(1.4,1.5)//positive--shoot
-        // } else if (this.go == 6){
-        //     this.randX = random(-1.5,1.5)//var
-        //     this.randY = random(1.4,1.5)//positive--shoot
-        // } else if (this.go == 7){
-        //     this.randX = random(1.4,1.5)//positive--shoot
-        //     this.randY = random(-1.5,1.5)//var
-        // }
-    }
+        if (this.go == 0){
+            this.randX = random(-1.5,-1.4)//negative--shoot
+            this.randY = random(-1.5,-1.4)//negative--shoot
+        } else if (this.go == 1){
+            this.randX = random(-1.4,-1.5)//negative--shoot
+            this.randY = random(-1.5,1.5)//var
+        } else if (this.go == 2){
+            this.randX = random(-1.5,1.5)//var
+            this.randY = random(-1.4,-1.5)//negative--shoot
+        } else if (this.go == 3){
+            this.randX = random(1.4,1.5)//positive--shoot
+            this.randY = random(1.4,1.5)//positive--shoot
+        } else if (this.go == 4) {
+            this.randX = random(1.4,1.5)//positive--shoot
+            this.randY = random(-1.4,-1.5)//negative--shoot
+        } else if (this.go == 5){
+            this.randX = random(-1.4,-1.5)//negative--shoot
+            this.randY = random(1.4,1.5)//positive--shoot
+        } else if (this.go == 6){
+            this.randX = random(-1.5,1.5)//var
+            this.randY = random(1.4,1.5)//positive--shoot
+        } else if (this.go == 7){
+            this.randX = random(1.4,1.5)//positive--shoot
+            this.randY = random(-1.5,1.5)//var
+        }
+
         // if (this.random_y){
         //     this.randY = random(-1.5,-1.4)
         // } else {
@@ -52,7 +53,7 @@ class Drone {
         this.playerY = playerY;
         this.shooter = false;
         this.hit = false;
-        this.speed = lerp(7, 11, .5)
+        this.speed = lerp(3, 11, .75)
         this.toPlayer = toPlayer;
     }
 
@@ -86,7 +87,7 @@ class Drone {
         } else {
             push()
 
-            if (dist(this.x, this.y, this.playerX, this.playerY) < 400){
+            if (dist(this.x, this.y, this.playerX, this.playerY) < this.scale){
                 fill('red')
                 if (this.hit == false){
                     GlobeScore -= 5;
@@ -97,10 +98,18 @@ class Drone {
                 fill("black")
             }
             // console.log(this.size+this.scale)
-            ellipse(this.x, this.y, this.size+this.scale)
+            if (this.CorR){
+                fill('green')
+                ellipse(this.x, this.y, this.size+this.scale)
+            } else {
+                rect(this.x, this.y, this.x,this.y)
+            }
+
             pop()
         }
 
     }
+
+
 
 }
