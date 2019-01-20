@@ -23,10 +23,12 @@ if (keyIsPressed){
     if (key == 'a'){// || keyIsPressed && key == 'LEFT_ARROW'){
         rot -= .05;
         signPos = false;
+        player1.score += 3;
         // console.log(rot)
     } else if (key == 'd'){// || keyIsPressed && key == 'RIGHT_ARROW'){
         rot += .05;
         signPos = true;
+        player1.score += 3;
         // console.log(rot)
     } else {
         if (signPos == true){
@@ -37,11 +39,14 @@ if (keyIsPressed){
 
     }
 }
+// player1.score += 1;
 }
 //
 let interv;
 
   function draw(){
+
+if (player1.health > 0) {
  spin()
    // background(0)
    push();
@@ -74,11 +79,16 @@ let interv;
    rect(1700*sin(rot), 1700*cos(rot), 100,100)
    pop();
    player1.show();
-   if (player1.score != GlobeScore){
-       player1.score = GlobeScore
+   if (player1.health != GlobeScore){
+       player1.health = GlobeScore
    }
    text(player1.score,100,100)
+   text(player1.health,300,100)
 // console.log(sin(rot))
+} else {
+    // text(player1.score, width/2, height/2)
+}
+
 }
 
   draw()

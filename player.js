@@ -3,6 +3,7 @@ class Player{
         this.x = x;
         this.y = y;
         this.score = 0;
+        this.health = 0;
     }
 
 show(){
