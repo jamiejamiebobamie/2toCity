@@ -8,9 +8,11 @@ class Drone {
         this.go = Math.floor(random(0,8))
         this.first = first;
         this.toPlayer = toPlayer;
-        if (this.toPlayer == true && this.first == false){
-            this.randX = (playerX)/1150
-            this.randY = (playerY)/1150
+        if (this.toPlayer == true && this.first == false && playerX != 0 && playerY != 0){
+            // this.randX = playerX/1700
+            // this.randY = playerY/1700
+            this.randX = (Math.random(-400, 400) + playerX)/1150
+            this.randY = (Math.random(-400, 400) + playerY)/1150
         } else {
         if (this.go == 0){
             this.randX = random(-1.5,-1.4)//negative--shoot
@@ -57,14 +59,16 @@ class Drone {
         this.hit = false;
         this.speed = lerp(3, 11, .75)
         this.toPlayer = toPlayer;
-        console.log(this.randX, this.randY, this.playerX, this.playerY)
+        // console.log(this.randX, this.randY, this.playerX, this.playerY)
         // console.log(this.first, this.toPlayer)
 }
 
 
     scaleUp(){
-        if (this.scale < 1300){
-            this.scale += pow(1.1,12);
+        if (this.scale < 700){
+            this.scale += pow(1.1,24);
+        } else{
+            this.speed = 15
         }
         //     this.x += pow(this.vector[0], 7);
         //     this.y += pow(this.vector[1], 7);
@@ -106,11 +110,10 @@ class Drone {
         //     ellipse(this.x, this.y, this.size+this.scale)
         // } else {
             // fill('black')
-            if (this.toPlayer == true && this.first == false){
-                ellipse(lerp(this.x, this.playerX, .4), lerp(this.y, this.playerY, .4), this.size+this.scale)
-            } else {
+            // if (this.toPlayer == true && this.first == false){
+            //     ellipse(lerp(this.x, this.playerX, .7), lerp(this.y, this.playerY, .7), this.size+this.scale)
+            // } else {
                 ellipse(this.x, this.y, this.size+this.scale)
-            }
         // }
             // console.log(this.size+this.scale)
 
