@@ -8,11 +8,13 @@ class Drone {
         this.go = Math.floor(random(0,8))
         this.first = first;
         this.toPlayer = toPlayer;
+        this.playerX = playerX;
+        this.playerY = playerY;
         if (this.toPlayer == true && this.first == false && playerX != 0 && playerY != 0){
-            // this.randX = playerX/1700
-            // this.randY = playerY/1700
-            this.randX = (Math.random(-400, 400) + playerX)/1150
-            this.randY = (Math.random(-400, 400) + playerY)/1150
+            this.randX = playerX/1200
+            this.randY = playerY/1200
+            // this.randX = 0-this.playerX
+            // this.randY = 0-this.playerY
         } else {
         if (this.go == 0){
             this.randX = random(-1.5,-1.4)//negative--shoot
@@ -53,22 +55,23 @@ class Drone {
         this.number = number;
         this.count = 0;
         this.oneTime = true;
-        this.playerX = playerX;
-        this.playerY = playerY;
+
         this.shooter = false;
         this.hit = false;
         this.speed = lerp(3, 11, .75)
         this.toPlayer = toPlayer;
-        // console.log(this.randX, this.randY, this.playerX, this.playerY)
+        console.log(this.randX, this.randY, this.playerX, this.playerY)
         // console.log(this.first, this.toPlayer)
 }
 
 
     scaleUp(){
-        if (this.scale < 700){
-            this.scale += pow(1.1,24);
+        if (this.scale < 400){
+            this.scale += pow(1.1,26);
+            // this.scale += 1
+            this.speed = 11
         } else{
-            this.speed = 15
+            this.speed = 19
         }
         //     this.x += pow(this.vector[0], 7);
         //     this.y += pow(this.vector[1], 7);
@@ -97,7 +100,7 @@ class Drone {
             if (dist(this.x, this.y, this.playerX, this.playerY) < this.scale){
                 if (this.hit == false) {
                     fill('red')
-                    GlobeScore -= 1;
+                    GlobeScore -= 10;
                     this.destroy = true
                     this.hit = true;
                     }
@@ -113,7 +116,7 @@ class Drone {
             // if (this.toPlayer == true && this.first == false){
             //     ellipse(lerp(this.x, this.playerX, .7), lerp(this.y, this.playerY, .7), this.size+this.scale)
             // } else {
-                ellipse(this.x, this.y, this.size+this.scale)
+                ellipse(this.x, this.y, this.size +this.scale)
         // }
             // console.log(this.size+this.scale)
 

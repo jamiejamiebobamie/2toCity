@@ -58,7 +58,7 @@ let interv;
    //     drone1.show()
    //     drone1.scaleUp()
    // }
-   drones.spawn()
+   drones.spawn(1700*sin(rot),1700*cos(rot))
    drones.droneShow(1700*sin(rot),1700*cos(rot))
    drones.destr()
    // drone1.scaleUp()
@@ -70,7 +70,7 @@ let interv;
    // // rect(1700, 0, 50,50)
    // fill('red')
    playerPos = [1700*sin(rot),1700*cos(rot)]
-   console.log([1700*sin(rot),1700*cos(rot)])
+   // console.log(drones.playerX, drones.playerY)
    rect(1700*sin(rot), 1700*cos(rot), 100,100)
    pop();
    player1.show();
