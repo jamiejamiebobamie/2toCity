@@ -3,6 +3,8 @@ let playerPos = [0,0]
 let GlobeScore = 100;
 let signPos = false;
 
+let numberOfDrones= 0;
+
 // let drone1 = new Drone (401,401, 100, 1);
 let drones = new droneSpawn(20, playerPos[0], playerPos[1]);
 let player1 = new Player(400, 700);
@@ -41,10 +43,9 @@ if (keyIsPressed){
 }
 // player1.score += 1;
 }
-//
-let interv;
 
   function draw(){
+
 
 // if (player1.health > 0) {
  spin()

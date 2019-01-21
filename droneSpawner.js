@@ -11,7 +11,7 @@ class droneSpawn {
 
     spawn(playerX, playerY){
         // console.log(this.droneArray.length, this.num)
-        if (this.droneArray.length < this.num){
+        if (this.droneArray.length < this.num && this.playerX != 0 && this.playerY != 0){
             this.playerX = playerX
             this.playerY = playerY
             if (this.count == 0){
