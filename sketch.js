@@ -4,7 +4,7 @@ let GlobeScore = 100;
 let signPos = false;
 
 // let drone1 = new Drone (401,401, 100, 1);
-let drones = new droneSpawn(15, playerPos[0], playerPos[1]);
+let drones = new droneSpawn(20, playerPos[0], playerPos[1]);
 let player1 = new Player(400, 700);
 
 function preload() {
@@ -46,7 +46,7 @@ let interv;
 
   function draw(){
 
-if (player1.health > 0) {
+// if (player1.health > 0) {
  spin()
    // background(0)
    push();
@@ -85,11 +85,11 @@ if (player1.health > 0) {
    text(player1.score,100,100)
    text(player1.health,300,100)
 // console.log(sin(rot))
-} else {
+// } else {
     // text(player1.score, width/2, height/2)
 }
 
-}
+// }
 
   draw()
 

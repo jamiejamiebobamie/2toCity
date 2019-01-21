@@ -60,18 +60,28 @@ class Drone {
         this.hit = false;
         this.speed = lerp(3, 11, .75)
         this.toPlayer = toPlayer;
-        console.log(this.randX, this.randY, this.playerX, this.playerY)
+        this.timeAlive = 0;
+        // console.log(this.randX, this.randY, this.playerX, this.playerY)
         // console.log(this.first, this.toPlayer)
 }
 
 
     scaleUp(){
-        if (this.scale < 400){
+        if (this.scale < 300){
             this.scale += pow(1.1,26);
             // this.scale += 1
-            this.speed = 11
+            if (this.toPlayer == true){
+                this.speed = this.timeAlive/45 + 1
+            } else {
+                this.speed = 9
+            }
+
         } else{
-            this.speed = 19
+            if (this.toPlayer == true){
+                this.speed = this.timeAlive/30 + 1
+            } else {
+                this.speed = 11
+            }
         }
         //     this.x += pow(this.vector[0], 7);
         //     this.y += pow(this.vector[1], 7);
@@ -93,14 +103,18 @@ class Drone {
     }
 
     show(){
-        if (this.x > 3000 || this.x < -3000 || this.y > 3000 || this.y < -3000){
+        this.timeAlive += 1;
+        // console.log(this.timeAlive);
+        if (this.x > 3000 || this.x < -3000 || this.y > 3000 || this.y < -3000 || this.timeAlive > 500){
+        // if (this.timeAlive > 304){
             this.destroy = true
+            console.log(this.destroy)
         } else {
             push()
             if (dist(this.x, this.y, this.playerX, this.playerY) < this.scale){
                 if (this.hit == false) {
                     fill('red')
-                    GlobeScore -= 10;
+                    GlobeScore -= 5;
                     this.destroy = true
                     this.hit = true;
                     }
